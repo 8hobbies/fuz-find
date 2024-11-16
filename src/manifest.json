@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "src/background.ts",
+    "scripts": ["src/background.ts"]
+  },
+  "minimum_chrome_version": "128",
+  "permissions": ["activeTab"],
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "fuz-find@goodaddon.com",
+      "strict_min_version": "128.0"
+    }
+  }
+}
