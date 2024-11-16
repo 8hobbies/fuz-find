@@ -6,7 +6,6 @@
     "allowJs": false,
     "types": [
       "chrome",
-      "validator",
       "@testing-library/jest-dom",
       "vitest/globals",
       "./src/vitest-setup.d.ts"
