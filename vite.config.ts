@@ -43,5 +43,21 @@ export default defineConfig({
     environment: "happy-dom",
     globals: true,
     setupFiles: ["./vitest-setup.js"],
+    coverage: {
+      provider: "v8",
+      exclude: [
+        "dist/**",
+        "eslint.config.mjs",
+        "vite.config.ts",
+        "src/background.ts",
+        "src/popup.tsx",
+      ],
+      thresholds: {
+        lines: 100,
+        functions: 100,
+        branches: 100,
+        statements: 100,
+      },
+    },
   },
 });
