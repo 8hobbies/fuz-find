@@ -16,8 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { findButtonLabel, findInputLabel } from "./ui_constants";
+import { render, screen } from "@testing-library/react";
 import App from "./PopupApp";
-import { render } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+
+function getFindInputElement(): HTMLInputElement {
+  return screen.getByRole("textbox", { name: findInputLabel });
+}
+
+function getFindButtonElement(): HTMLButtonElement {
+  return screen.getByRole("button", { name: findButtonLabel });
+}
 
 describe("Find page", () => {
   beforeEach(() => {
@@ -25,8 +35,28 @@ describe("Find page", () => {
     resetBrowserStorage();
   });
 
-  test("", () => {
+  test("Initial screen", () => {
+    const { unmount } = render(<App />);
+
+    expect(getFindInputElement()).toBeEnabled();
+    expect(getFindInputElement()).toHaveValue("");
+    expect(getFindButtonElement()).toBeDisabled();
+
+    // Explicitly unmount here, otherwise will be warned:
+    //   Warning: An update to App inside a test was not wrapped in act(...).
+    // See https://github.com/testing-library/react-testing-library/issues/999.
+    unmount();
+  });
+
+  test("Non-empty text enables the find button", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    // Placeholder
+
+    // Sanity checks
+    expect(getFindButtonElement()).toBeDisabled();
+    expect(getFindInputElement()).toHaveValue("");
+
+    await user.type(getFindInputElement(), " "); // Single character
+    expect(getFindButtonElement()).toBeEnabled();
   });
 });

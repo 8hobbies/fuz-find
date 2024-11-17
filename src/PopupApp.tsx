@@ -16,15 +16,41 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Stack, TextField } from "@mui/material";
+import { findButtonLabel, findInputLabel } from "./ui_constants";
 import React from "react";
 
 export default function App(): React.JSX.Element {
+  const [findText, setFindText] = React.useState<string>("");
+
+  // TODO: Remove v8 ignore once form submission is implemented
+  /* v8 ignore start */
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+  }
+  /* v8 ignore end */
+
   return (
     <Box>
-      <Typography component="h1" variant="h2">
-        Fuz Find
-      </Typography>
+      <form onSubmit={handleSubmit}>
+        <Stack direction="row" spacing={2}>
+          <TextField
+            label={findInputLabel}
+            name={findInputLabel}
+            value={findText}
+            onChange={(e) => {
+              setFindText(e.target.value);
+            }}
+          />
+          <Button
+            type="submit"
+            disabled={findText.length === 0}
+            variant="contained"
+          >
+            {findButtonLabel}
+          </Button>
+        </Stack>
+      </form>
     </Box>
   );
 }

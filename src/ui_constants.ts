@@ -15,3 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+export const findInputLabel = "Find Text" as const;
+export const findButtonLabel = "Find" as const;
