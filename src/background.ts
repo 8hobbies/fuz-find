@@ -16,17 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-deprecated
 chrome.runtime.onInstalled.addListener(async (details) => {
-  // eslint-disable-next-line @typescript-eslint/no-deprecated
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
     await chrome.tabs.create({
       url: "https://www.goodaddon.com/fuz-find/",
     });
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
   } else if (details.reason === chrome.runtime.OnInstalledReason.UPDATE) {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
     await chrome.tabs.create({
       url: "https://www.goodaddon.com/fuz-find/#changelog",
     });
